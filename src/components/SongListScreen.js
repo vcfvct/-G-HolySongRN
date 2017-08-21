@@ -18,7 +18,7 @@ export default class SongListScreen extends Component {
     alphabet.map((char) => sectionsObj[char] = []);
     songs.forEach((song) => {
       let pinyinChars = pinyin.getFullChars(song.name);
-      sectionsObj[pinyinChars[0]].push(Object.assign(song, {pinyinChars}));
+      sectionsObj[pinyinChars[0]].push(Object.assign(song, {pinyinChars, key: song.name}));
     });
 
     return Object.keys(sectionsObj).map((char) => {
@@ -35,8 +35,9 @@ export default class SongListScreen extends Component {
           renderItem={({item}) =>
             <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => { navigate('Lyric', item) }}>
-              <Text key={item.name} style={styles.item}>{item.name}</Text>
+            onPress={() => { navigate('Lyric', item) }}
+            key={item.name}>
+              <Text  style={styles.item}>{item.name}</Text>
             </TouchableOpacity>}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
         />

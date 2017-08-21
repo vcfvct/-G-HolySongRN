@@ -12,8 +12,8 @@ export default class LyricScreen extends Component{
     let {params} = this.props.navigation.state;
     return(
       <View>
-        <Text>{params.name}</Text>
-        <Text>{params.lyric}</Text>
+        <Text style={{textAlign: 'center', fontWeight: 'bold', fontSize: 18, marginTop: 10}}>{params.name}</Text>
+        <Text style={{textAlign: 'center', fontSize: 18}}>{params.lyric}</Text>
       </View>
     )
   }
