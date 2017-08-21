@@ -3,22 +3,15 @@
  */
 import React, {Component} from 'react';
 import songs from '../static/songs';
-import {SectionList, StyleSheet, Text, View} from "react-native";
+import {SectionList, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import _ from 'lodash';
 import pinyin from 'js-pinyin';
 pinyin.setOptions({checkPolyphone: false, charCase: 0});
 
-export default class SongList extends Component {
-  getSongTitles() {
-    return songs.map((song) => song.name);
-  }
-
-  getSongsObject() {
-    let songsObj = {};
-    songs.forEach((song) => songsObj[song.name] = song.lyric);
-    return songsObj;
-  }
-
+export default class SongListScreen extends Component {
+  static navigationOptions = {
+    title: '歌曲列表',
+  };
   generateSections() {
     let sectionsObj = {};
     let alphabet = "abcdefghijklmnopqrstuvwxyz".toUpperCase().split("");
@@ -34,11 +27,17 @@ export default class SongList extends Component {
   }
 
   render() {
+    let {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
         <SectionList
           sections={this.generateSections()}
-          renderItem={({item}) => <Text key={item.name} style={styles.item}>{item.name}</Text>}
+          renderItem={({item}) =>
+            <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => { navigate('Lyric', item) }}>
+              <Text key={item.name} style={styles.item}>{item.name}</Text>
+            </TouchableOpacity>}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
         />
       </View>
@@ -65,4 +64,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
-})
+});

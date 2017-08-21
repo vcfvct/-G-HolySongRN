@@ -5,39 +5,19 @@
  */
 
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-import SongList from "./src/components/SongList";
+import { AppRegistry } from 'react-native';
+import SongListScreen from "./src/components/SongListScreen";
+import Navigation from "./src/index";
 
+/*
 export default class HolySongRN extends Component {
   render() {
     return (
-        <SongList/>
+        <SongListScreen/>
     );
   }
+
 }
+ */
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-AppRegistry.registerComponent('HolySongRN', () => HolySongRN);
+AppRegistry.registerComponent('HolySongRN', () => Navigation);
